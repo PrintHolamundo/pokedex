@@ -6,13 +6,13 @@ export class Pokemon extends Document {
 
     @Prop({
         unique: true,
-        required: true,
+        index: true,
     })
     name: string;
 
     @Prop({
         unique: true,
-        required: true,
+        index: true,
     })
     no: number;
 }
