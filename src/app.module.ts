@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { ConfigModule } from '@nestjs/config';
 import { Mongoose } from 'mongoose';
 import { join } from 'path';
 import { PokemonModule } from './pokemon/pokemon.module';
@@ -9,11 +10,12 @@ import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
     }),
 
-    MongooseModule.forRoot('mongodb://localhost/nest-pokemon'),
+    MongooseModule.forRoot(process.env.MONGODB),
 
     PokemonModule,
 
